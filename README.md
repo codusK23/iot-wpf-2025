@@ -96,13 +96,101 @@ IoT 개발자 WPF 리포지토리
 
     <img src="./image/wpf0003.png" width="600">
 
+- MVVM 장단점
+    - View <-> ViewModel간 데이터 자동 연동
+    - 로직 분리로 구조가 명확해짐. 자기 할 일만 하면 됨
+    - 팀으로 개발시 역할분담이 확실. 팀프로젝트에 알맞음
+    - 테스트와 유지보수는 쉬움
+    - 구조가 복잡. 디버깅이 어려움
+    - 스케일이 커짐
+
 ### WPF MVVM 연습
 1. 프로젝트 생성 - [디자인](./day01/Day01Wpf/WpfBasicApp02/View/MainWindow.xaml), [소스](./day01/Day01Wpf/WpfBasicApp02/ViewModel/MainViewModel.cs)
+
 2. WPF DB바인딩 연습시 사용한 UI 그대로 복사
+
 3. Model, View, ViewModel 폴더 생성
+
 4. MainWindow.xaml을 View로 이동
+
 5. App.xaml StartupUri 수정
+
 6. Model폴더 내 Book클래스 생성
     - INotifyPropertyChanged 인터페이스 : 객체내의 어떠한 속성값이 변경되면 상태를 C#에게 알려주는 기능
     - PropertyChangedEventHandler 이벤트 생성 
+
 7. ViewModel폴더 내 MainViewModel클래스 생성
+    - INotifyPropertyChanged 인터페이스 구현
+    - OnProPertyChanged 이벤트핸들러 메서드 코딩
+
+8. MainView.xaml에 ViewModel 연결
+    ```xml
+        ...
+        xmlns:vm="clr-namespace:WpfBasicApp02.ViewModel"
+        DataContext="{DynamicResource MainVM}"
+        ...
+    <mah:MetroWindow.Resources>
+        <!-- MainViewModel을 가져와서 사용하겠다!! -->
+        <vm:MainViewModel x:Key="MainVM" />
+    </mah:MetroWindow.Resources>
+    ```
+
+9. MainView.xaml 컨트롤에 바인딩 작업
+    - 전통적인 C# 방식 : x:Name사용 (비하인드 사용필요), 마우스 이벤트 추가
+    ```xml
+    <!-- UI 컨트롤 구성 -->
+    <DataGrid x:Name="GrdBooks" 
+          Grid.Row="0" Grid.Column="0" Margin="5" 
+          AutoGenerateColumns="False" IsReadOnly="True" 
+          MouseDoubleClick="GrdBooks_MouseDoubleClick">
+        <DataGrid.Columns>
+            <DataGridTextColumn Binding="{Binding Idx}" Header="순번" />
+    ```
+
+    - WPF MVVM 바인딩 방식 : 전부 Binding 사용
+    ```xml
+    <!-- UI 컨트롤 구성 -->
+    <DataGrid Grid.Row="0" Grid.Column="0" Margin="5" 
+          AutoGenerateColumns="False" IsReadOnly="True"
+          ItemsSource="{Binding Books}"
+          SelectedItem="{Binding SelectedBook, Mode=TwoWay}">
+        <DataGrid.Columns>
+            <DataGridTextColumn Binding="{Binding Idx}" Header="순번" />
+    ```
+
+10. 실행결과
+
+    <img src="./image/wpf0005.png" width="600">
+
+
+## 2일차
+
+### MVVM Framework
+- MVVM 개발자체가 어려움. 초기 개발시 MVVM 템플릿을 만드는데 시간이 많이 소요. 난이도 있음
+- 조금 쉽게 개발하고자 3rd Party에서 개발한 MVVM 프레임워크 사용
+- 종류
+    -`Prism` : MS계열에서 직접 개발. 대규모 앱 개발시 사용. 모듈화 잘 되어 있음. 커뮤니티 활발
+        - 진입장벽 높음
+    - **Caliburn.Micro** : 경량화된 프레임워크. 쉽게 개발할 수 있음. Xaml 바인딩 생략가능. 커뮤니티 주는 추세
+        - [공식사이트](https://caliburnmicro.com/)
+        - [Github](https://github.com/Caliburn-Micro/Caliburn.Micro)
+        - MahApps.Metro에서 사용 중
+        - 디버깅이 어려움
+    - `MVVM Light Toolkit` : 가장 가벼운 MVVM 입문용. 쉬운 Command 지원. 개발종료.
+        - 확장성이 떨어짐
+    - CommunityToolkit.Mvvm : MS 공식 경략 MVVM. 단순, 빠름. 커뮤니티등 매우 활발
+        - 모듈 기능이 없음
+    - `ReactveUI` : Rx기반 MVVM. 비동기, 스트림처리 강력. 커뮤니티가 활발.
+        - 진입장벽이 높음
+
+### Caliburn.Micro 학습
+1. WPF 프로젝트 생성
+2. NuGet 패키지 Caliburn.Micro 검색 후 설치
+3. App.xaml StartupUri를 삭제
+4. Model, View, ViewModel 폴더 생성
+5. MainViewModel 클래스 생성
+    - MainView의 속하는 ViewModel은 반드시 MainViewModel라는 이름을 써야함
+6. MainWindow.xaml을 View 이동
+7. MainWindow를 MainView로 이름 변경
+8. Boostrapper 클래스 생성, 작성
+

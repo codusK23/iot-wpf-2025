@@ -1,45 +1,32 @@
-﻿using MySql.Data.MySqlClient;
-using System;
-using System.Collections.Generic;
+﻿using Caliburn.Micro;
+using MahApps.Metro.Controls.Dialogs;
+using MySql.Data.MySqlClient;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using WpfBasicApp02.Models;
 
-using WpfBasicApp02.Model;
-
-namespace WpfBasicApp02.ViewModel
+namespace WpfBasicApp02.ViewModels
 {
-    // MainViewModel에 속하는 속성의 값이 변경되면 이벤트가 발생
-    internal class MainViewModel : INotifyPropertyChanged
+    class MainViewModel : Conductor<object>
     {
-        // 속성추가 get; set;
-        //ObservableCollection -> 리스트의 변형(변화를 감지할 수 있도록 처리된 클래스)
+        public ObservableCollection<KeyValuePair<string, string>> Divisions { get; set; }
 
         public ObservableCollection<Book> Books { get; set; }
 
-        // List<KeyValuePair<string, string>> divisions 의 변형
-        public ObservableCollection<KeyValuePair<string, string>> Divisions { get; set; }
-
-        // 선택된 값에 대한 멤버변수, 멤버변수는 _를 붙이거나, 소문자로 변수명을 시작
         private Book _selectedBook;
 
-        // 선택된 값에 대한 속성
         public Book SelectedBook
         {
-            //get { return _selectedBook; }
-            get => _selectedBook; // 람다식
+            get => _selectedBook;
             set
             {
                 _selectedBook = value;
-                // 값이 변경된 것을 알아차리도록 해야함!!
-                OnPropertyChanged(nameof(SelectedBook));    // "SelectedBook"
+                NotifyOfPropertyChange(() => SelectedBook);
             }
         }
 
-        public MainViewModel() {
+        public MainViewModel()
+        {
+            _dialogCoordinator = new DialogCoordinator();
             LoadControlFromDb();
             LoadGridFromDb();
         }
@@ -78,7 +65,7 @@ namespace WpfBasicApp02.ViewModel
             } // conn.Close() 자동발생
 
             Divisions = divisions;
-            OnPropertyChanged(nameof(Divisions)); // Divisions 속성 값이 변경됨
+            NotifyOfPropertyChange(() => Divisions);
         }
 
         // DB에서 데이터 로드 후 Books 속성에 집어넣기
@@ -126,16 +113,7 @@ namespace WpfBasicApp02.ViewModel
             } // conn.Close() 자동발생
 
             Books = books;
-            OnPropertyChanged(nameof(Books));
-        }
-
-        // 속성 값이 변경되면 이벤트 발생
-        public event PropertyChangedEventHandler? PropertyChanged;
-
-        protected void OnPropertyChanged(string name)
-        {
-            // 기본적인 이벤트 핸들러 파라미터와 동일 (object, sender, EventArgs e)
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+            NotifyOfPropertyChange(() => Books);
         }
     }
 }
