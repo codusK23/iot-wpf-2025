@@ -6,7 +6,7 @@ using WpfBasicApp02.Models;
 
 namespace WpfBasicApp02.ViewModels
 {
-    class MainViewModel : Conductor<object>
+    public class MainViewModel : Conductor<object>
     {
         public ObservableCollection<KeyValuePair<string, string>> Divisions { get; set; }
 
@@ -24,12 +24,15 @@ namespace WpfBasicApp02.ViewModels
             }
         }
 
-        public MainViewModel()
+        private readonly IDialogCoordinator _dialogCoordinator;
+
+        public MainViewModel(IDialogCoordinator dialogCoordinator)
         {
             _dialogCoordinator = new DialogCoordinator();
             LoadControlFromDb();
             LoadGridFromDb();
         }
+
         private void LoadControlFromDb()
         {
             // 1. 연결 문자열 (DB 연결 문자열은 필수)
@@ -65,7 +68,7 @@ namespace WpfBasicApp02.ViewModels
             } // conn.Close() 자동발생
 
             Divisions = divisions;
-            NotifyOfPropertyChange(() => Divisions);
+            NotifyOfPropertyChange(() => Divisions); // Caliburn.Micro가 제공하는 메서드
         }
 
         // DB에서 데이터 로드 후 Books 속성에 집어넣기
@@ -73,7 +76,7 @@ namespace WpfBasicApp02.ViewModels
         {
             // 1. 연결문자열(DB연결문자열은 필수)
             string connectionString = "Server=localhost;Database=bookrentalshop;Uid=root;Pwd=12345;Charset=utf8;";
-            // 2. 사용쿼리
+            // 2. 사용쿼리, 기본쿼리로 먼저 작업 후 필요한 실제쿼리로 변경해도
             string query = @"SELECT b.Idx, b.Author, b.Division, b.Names, b.ReleaseDate, b.ISBN, b.Price,
                                        d.Names AS dNames
                                     FROM bookstbl AS b, divtbl AS d
@@ -115,5 +118,10 @@ namespace WpfBasicApp02.ViewModels
             Books = books;
             NotifyOfPropertyChange(() => Books);
         }
+
+        public async void DoAction()
+        {
+        }
+
     }
 }

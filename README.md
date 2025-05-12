@@ -129,10 +129,10 @@ IoT 개발자 WPF 리포지토리
         xmlns:vm="clr-namespace:WpfBasicApp02.ViewModel"
         DataContext="{DynamicResource MainVM}"
         ...
-    <mah:MetroWindow.Resources>
-        <!-- MainViewModel을 가져와서 사용하겠다!! -->
-        <vm:MainViewModel x:Key="MainVM" />
-    </mah:MetroWindow.Resources>
+        <mah:MetroWindow.Resources>
+            <!-- MainViewModel을 가져와서 사용하겠다!! -->
+            <vm:MainViewModel x:Key="MainVM" />
+        </mah:MetroWindow.Resources>
     ```
 
 9. MainView.xaml 컨트롤에 바인딩 작업
@@ -185,12 +185,97 @@ IoT 개발자 WPF 리포지토리
 
 ### Caliburn.Micro 학습
 1. WPF 프로젝트 생성
+
 2. NuGet 패키지 Caliburn.Micro 검색 후 설치
+
 3. App.xaml StartupUri를 삭제
+
 4. Model, View, ViewModel 폴더 생성
+
 5. MainViewModel 클래스 생성
     - MainView의 속하는 ViewModel은 반드시 MainViewModel라는 이름을 써야함
+
 6. MainWindow.xaml을 View 이동
+
 7. MainWindow를 MainView로 이름 변경
+
 8. Boostrapper 클래스 생성, 작성
 
+9. App.xaml에서 Resource 추가
+
+10. MahApps.Metro UI 적용
+
+    <img src="./image/wpf0006.png" width="600">
+
+### Caliburn.Micro MVVM 연습 
+1. WPF 프로젝트 생성 - [소스](./day02/Day02Wpf/WpfBasicApp02/ViewModels/MainViewModel.cs)
+
+2. 필요 라이브러리 설치
+    - MySQL.Data
+    - MahApps.Metro
+    - MahApps.Metro.IconPacks
+    - Caliburn.Micro
+
+3. Models, Views, ViewModels로 폴더 생성
+
+4. 이전작업 소스코드 복사, 네임스페이스 변경
+
+    <img src="./image/wpf0007.png" width="600">
+
+
+## 3일차 (05.12)
+
+### CommunityToolkit.Mvvm 다시
+1. Wpf 프로젝트 생성
+
+2. 필요 라이브러리 설치
+    - CommunityToolkit.Mvvm
+    - MahApps.Metro
+    - MahApps.Metro.IconPacks
+
+3. Models, Views, ViewModels 폴더 생성
+
+4. MainWindow.xaml 삭제
+
+5. App.xaml StartupUri 삭제
+
+6. Views/MainView.xaml 생성
+
+7. ViewModels/ViewModels.cs 생성
+
+8. App.xaml Startup 이벤트 추가
+    - App.xaml.cs 로직 추가
+
+9. App.xaml MahApps.Metro 관련 리소스 추가
+
+10. MainView에 MetroWindow로 변경
+
+### Log 라이브러리 사용
+- 개발한 앱, 솔루션의 현재상태를 계속 모니터링 하는 기능
+
+- Log 사용법
+    - 직접 코딩 방식
+    - 로그 라이브러리 사용방식
+
+- Log 라이브러리
+    - NLog : 가볍고 쉽다. 빠름. 데스크톱
+    - Serilog : 어려운 편, 빠름. 웹쪽
+    - Log4net : Java의 로그를 .NET으로 이전. 느림. 웹쪽
+    - `Zlogger` : 제일 최신(2021), 초고속. 게임서버
+
+### NLog 라이브러리 사용
+1. NuGet패키지 > NLog, NLog.Schema 설치
+
+2. 새항목 > XML파일 > NLog.config 생성
+
+3. Info < Debug < Warn < Error < Fatal
+
+4. `NLog.config`를 출력 디렉토리로 복사
+
+5. Debug, Trace는 출력이 안 됨
+
+6. Info, Warn, Error, Fatal을 사용
+
+    <img src="./image/wpf0009.png" width="600">
+
+### DB연결 CRUD 연습
