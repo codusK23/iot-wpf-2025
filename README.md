@@ -252,7 +252,7 @@ IoT 개발자 WPF 리포지토리
 
     <img src="./image/wpf0008.png" width="600">
 
-### Log 라이브러리 사용
+### Log 라이브러리
 - 개발한 앱, 솔루션의 현재상태를 계속 모니터링 하는 기능
 
 - Log 사용법
@@ -309,16 +309,50 @@ IoT 개발자 WPF 리포지토리
     https://github.com/user-attachments/assets/b2e0bf76-13d4-426c-b10e-615b93d6006f
 
 
-
 ## 4일차
 
 ### DB연결 CRUD 연습(계속)
-1. 
+1. BookGenre에서 INSERT, UPDATE 기능 구현
+
+2. NLog.config 생성
+
+3. Helpers.Common 클래스 생성
+    - NLog 인스턴스 생성
+    - 공통 DB 연결 문자열 생성
+    - MahApps.Metro 다이얼로그 코디네이터 생성
+
+4. 각 ViewModel에 IDialogCoordinator 관련 코딩 추가
+    - ViewModel 생성자에 파라미터 추가
+    - View, ViewModel 연동시 IDialogCoordinator 연결
+
+5. View에 Dialog관련 네임스페이스, 속성 추가
+
+6. await this.dialogCoordinator.ShowMessageAsync() 사용
+
+    <img src="./image/wpf0011.png" width="650">
+
+7. BookView.xaml 화면작업
+
+8. MemberView.xaml, RentalView.xaml 화면작업
+
+9. ViewModel들 작업
+
+    <img src="./image/wpf0012.png" width="650">
 
 #### DB연결 CRUD 연습시 추가 필요사항
-- [ ] NLog로 각 기능 동작시 로그남기기. 공통화작업
-- [ ] DB쿼리 모델로 이전
-- [ ] 연결문자열 Common으로 이전
-- [ ] MahApps.Metro 메시지형태로 변경
-- [ ] 삭제여부 메시지박스 추가
-- [ ] 종료 메뉴아이템 
+- [x] 여러 번 나오는 로직 메서드화
+- [x] NLog로 각 기능 동작시 로그 남기기. 공통화작업
+- [x] 연결 문자열 Common으로 이전
+- [x] 종료 메뉴 다이얼로그 MetroUI로 변경
+- [x] MahApps.Metro 메시지 형태로 변경
+- [x] 삭제여부 메시지박스 추가
+
+### DB연결 CRUD 실습
+- BooksView, BooksViewModel 작업 실습
+- 1일차 MVVM 내용, 오늘 학습한것 
+
+## 5일차
+
+### 영화즐겨찾기앱
+- OpenAPI + Youtube API 
+- ...
