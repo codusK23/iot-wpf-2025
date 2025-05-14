@@ -302,9 +302,8 @@ IoT 개발자 WPF 리포지토리
     - Books(View, ViewModel)
 
 7. Models > Genre(DivisionTbl) 모델 작업
+
 8. BookGenreViewModel DB처리 구현
-
-
 
     https://github.com/user-attachments/assets/b2e0bf76-13d4-426c-b10e-615b93d6006f
 
@@ -407,7 +406,7 @@ IoT 개발자 WPF 리포지토리
 
 10. 실행시 텍스트박스에 포커스 가도록 처리
 
-   동영상 
+    https://github.com/user-attachments/assets/c45e4ab7-8ae6-4005-ac8f-be675b35a11d
 
 
 ## 6일차
