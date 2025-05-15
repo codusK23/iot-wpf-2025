@@ -436,4 +436,4 @@ IoT 개발자 WPF 리포지토리
 
 7. 결과 화면
 
-동영상
+    https://github.com/user-attachments/assets/79ffbbae-0093-4981-8e31-49458663bf54
