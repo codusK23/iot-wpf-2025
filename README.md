@@ -468,7 +468,7 @@ IoT 개발자 WPF 리포지토리
 
 4. 위도(Latitude), 경도(Longitude) 표현
 
-    동영상 추가
+    https://github.com/user-attachments/assets/d1361876-88fd-4db2-b06f-f5a4647ad01e
 
 ### 스마트홈 연동 모니터링앱
 
@@ -521,7 +521,7 @@ IoT 개발자 WPF 리포지토리
 
 5. VS Code에서 [MqttPub.py](./day08/Pythons/MqttPub.py) 파일 생성
 
-    동영상 삽입
+    https://github.com/user-attachments/assets/304a9b0e-ebb3-474b-8c75-0aabbb738795
 
 ### 스마트홈 프로젝트 시작
 1. 화면 UI 변경
