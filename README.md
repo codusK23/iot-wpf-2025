@@ -455,3 +455,91 @@ IoT 개발자 WPF 리포지토리
 4. MVVM 초기화
 
 5. UI 디자인 및 구현
+
+
+## 8일차
+
+### 부산광역시 부산맛집 정보앱 (계속)
+1. 그리드 표현 아이템 조정
+
+2. 메인창내용을 구글맵창으로 이동
+
+3. CefSharp.Wpf로 구글맵지도 표현
+
+4. 위도(Latitude), 경도(Longitude) 표현
+
+    동영상 추가
+
+### 스마트홈 연동 모니터링앱
+
+<img src="./image/wpf0019.jpg" width="650">
+
+- 전면부
+
+<img src="./image/wpf0020.jpg" width="650">
+
+- 후면부
+
+-[개발링크](https://github.com/hugoMGSung/hungout-with-arduino/tree/main/SmartHomeDIY)
+
+1. Arduino + Raspberry Pi 스마트홈 기제작
+
+#### MQTT
+
+<img src="./image/wpf0021.png" width="600" />
+
+- Message Queueing Telemetry Transport : 기계간 통신용 경량 메시징 프로토콜
+- Publish / Subscribe 라는 출판쪽 용어로 사용
+    - Publish(출간) : 메시지 만들어서 전달
+    - Subscribe(구독) : 필요한 메시지를 수신받아서 사용
+- Server(MQTT 브로커)/Client 프로그램으로 동작
+- 데이터는 휘발성 : 받는 사람이 없으면 데이터는 사라짐. DB에 저장하는 구성을 해줘야 함
+- MQTT를 대체할 수 있는 유사한 기능을 하는 기술
+    - `Redis`, `Apache Kafka`, *RabbitMQ*, ZeroMQ, Socket통신 직접개발
+
+#### MQTT 시뮬레이션 프로젝트 시작
+1. MQTT 브로커 설치
+    - https://mosquitto.org/
+    - mosquitto-2.0.21a-install-windows-x64.exe 설치
+    - 설치 후 서비스에서 서비스 중지
+
+2. Mosquitto 설정파일 수정
+    - mosquitto.conf 문서에디터 관리자모드로 오픈
+    - #listener -> listener 1883 으로 변경
+    - #allow_anonymous false -> allow_anonymous true
+    - 파일 저장 후, 서비스 재시작
+
+3. Windows 보안
+    - 방화벽 및 네트워크 보호 > 고급 설정
+    - 인바운드 규칙 > 새 규칙
+    - 포트 선택 > 다음
+    - TCP 선택, 특정포트 1883 입력
+
+4. MQTT Explorer 설치
+    - new Connection 생성, Host 127.0.0.1, Port 1883 저장
+    - CONNECT
+
+5. VS Code에서 [MqttPub.py](./day08/Pythons/MqttPub.py) 파일 생성
+
+    동영상 삽입
+
+### 스마트홈 프로젝트 시작
+1. 화면 UI 변경
+
+2. NuGet 패키지
+    - CommunityToolkit.Mvvm 설치
+
+3. Models, Views, ViewModels 폴더 생성
+
+4. MainWindow 바인딩 처리
+
+5. MainViewModel에서 바인딩 속성 초기화
+
+    <img src="./image/wpf0023.png" width="650">
+    
+    
+## 9일차 
+
+### 스마트홈 연동 모니터링앱 (계속)
+
+#### MQTT 시뮬레이션 (계속)
