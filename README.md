@@ -472,11 +472,11 @@ IoT 개발자 WPF 리포지토리
 
 ### 스마트홈 연동 모니터링앱
 
-<img src="./image/wpf0019.jpg" width="650">
+<img src="./image/wpf0020.jpg" width="650">
 
 - 전면부
 
-<img src="./image/wpf0020.jpg" width="650">
+<img src="./image/wpf0021.jpg" width="650">
 
 - 후면부
 
@@ -486,7 +486,7 @@ IoT 개발자 WPF 리포지토리
 
 #### MQTT
 
-<img src="./image/wpf0021.png" width="600" />
+<img src="./image/wpf0022.png" width="600" />
 
 - Message Queueing Telemetry Transport : 기계간 통신용 경량 메시징 프로토콜
 - Publish / Subscribe 라는 출판쪽 용어로 사용
@@ -535,11 +535,81 @@ IoT 개발자 WPF 리포지토리
 
 5. MainViewModel에서 바인딩 속성 초기화
 
-    <img src="./image/wpf0023.png" width="650">
+    <img src="./image/wpf0024.png" width="650">
     
     
 ## 9일차 
 
 ### 스마트홈 연동 모니터링앱 (계속)
+- MQTT 부터 시작
+
+#### 네트워크 확인
+- telnet 명령어로 서버서비스가 동작중인지 확인 
+- telnet 아이피주소 포트번호
+
+    ```shell    
+    # MySQL에 접속가능한지 여부
+    > telnet 127.0.0.1 3306
+    # MQTT에 접속가능한지 여부
+    > telnet 127.0.0.1 1883
+    ```
 
 #### MQTT 시뮬레이션 (계속)
+1. MqttPub.py 소스코드에 Fake IoT 센서값 전달 코딩
+
+2. Fake 센싱값을 json으로 Publish
+
+3. C# MahApps.Metro 사용 MQTT 데이터 Subscriber앱 
+    - CommunityToolkit.Mvvm
+    - MahApps.Metro
+    - MahApps.Metro.IconPacks
+    - Newtonsoft.Json
+    - MQTTnet
+    - MySql.Data
+
+4. DB서버에 접속자 정보확인 쿼리
+    ```sql
+    SELECT * FROM information_schema.processlist LIMIT 10; -- 데이터가 10건 이상이면 LIMIT 10은 삭제
+    ```
+
+5. WPF MVVM 전체구현
+
+6. MqttPub.py와 Publish된 IoT데이터 WPF에서 Subscribe 예제
+
+    동영상
+
+## 10일차
+
+### 스마트홈 연동 모니터링앱 (계속)
+
+#### 스마트홈 기기 실제 IoT센서데이터 모니터링앱
+- 9일차 작성한 MQTT Subscribe 앱
+- SmartHome MQTT Json Key값
+    - L : Light 전등
+    - R : Rain(Water Drop Sensor) 
+    - T : Temperature 온도
+    - H : Humidity 습도
+    - F : Fan 선풍기/에어컨
+    - V : Human Detection 칩입감지
+    - RL : Real Light 실제전등 켜짐 여부
+    - CB : ChaimBell 벨푸시 여부
+- 실행화면 생략(9일차 화면 동일)
+
+#### 스마트홈 WPF 실시간 시각화
+- NuGet 패키지
+    - MQTTnet
+    - Newtonsoft.Json
+    - NLog
+- WpfMqttSubApp.Models의 SensingInfo.cs 가져오기
+- MQTT 센서 데이터로 동작용 변수 값 할당
+- 실행화면 
+
+    동영상 26
+
+    스마트홈 조작영상
+
+    동영상 27
+
+    스마트홈 모니터링앱 동작영상
+
+### Github 대문 꾸미기
