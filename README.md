@@ -456,6 +456,8 @@ IoT 개발자 WPF 리포지토리
 
 5. UI 디자인 및 구현
 
+    https://github.com/user-attachments/assets/96bd5864-a94f-4df6-9233-6c5493c8fe96
+
 
 ## 8일차
 
@@ -576,7 +578,8 @@ IoT 개발자 WPF 리포지토리
 
 6. MqttPub.py와 Publish된 IoT데이터 WPF에서 Subscribe 예제
 
-    동영상
+    https://github.com/user-attachments/assets/e39efdba-ef85-4d47-ac79-72ddfe0ff938
+
 
 ## 10일차
 
@@ -604,11 +607,11 @@ IoT 개발자 WPF 리포지토리
 - MQTT 센서 데이터로 동작용 변수 값 할당
 - 실행화면 
 
-    동영상 26
+    https://github.com/user-attachments/assets/809eb09a-3d35-4dcb-aaa8-80c7e52ab519
 
     스마트홈 조작영상
 
-    동영상 27
+    https://github.com/user-attachments/assets/d1f519e0-789d-4958-9e2b-7e8462b6ba80
 
     스마트홈 모니터링앱 동작영상
 
