@@ -58,7 +58,7 @@ namespace WpfSmartHomeApp.UserControls
             get { return (ImageSource)GetValue(ImageOnProperty); }
             set { SetValue(ImageOnProperty, value); }
         }
-        
+
         public static readonly DependencyProperty ImageOnProperty =
             DependencyProperty.Register("ImageOn", typeof(ImageSource), typeof(Card));
 

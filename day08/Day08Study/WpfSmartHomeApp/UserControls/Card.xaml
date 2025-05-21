@@ -137,6 +137,6 @@
                     </Style>
                 </TextBlock.Style>
             </TextBlock>
-        </Grid> 
+        </Grid>
     </Border>
 </UserControl>
